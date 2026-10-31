@@ -1,4 +1,4 @@
-const SHEET_ID = "1BLR55-BZUCUtgJGyWYUsEvykIOxA0ZpFqqBVQz43TVw";
+const SHEET_ID = "1VdfAuiBd0IWAwC4ONa8VCrh-Ww8goabVFrud_NyB-1E";
 const HOJA = "Link";
 const CELDA = "B1:B1";
 
