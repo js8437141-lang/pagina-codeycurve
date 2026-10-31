@@ -2,11 +2,22 @@ const SHEET_ID = "1VdfAuiBd0IWAwC4ONa8VCrh-Ww8goabVFrud_NyB-1E";
 const HOJA = "Link";
 const CELDA = "B1:B1";
 
-// Dominio -> parámetro que se agrega al enlace del script ("" = enlace crudo)
+// Por DOMINIO propio -> parámetro que se agrega al enlace del script ("" = enlace crudo)
 const DESTINOS = {
   "codecurve.vercel.app": "?vista=empresa",
   "autogestion.vercel.app": "",
   "licenciacodecurve.vercel.app": "?vista=panel",
+};
+
+// Por RUTA (sirve con codecurve-omega.vercel.app o cualquier otro dominio)
+//   codecurve-omega.vercel.app/empresa     -> ?vista=empresa
+//   codecurve-omega.vercel.app/autogestion -> enlace crudo
+//   codecurve-omega.vercel.app/panel       -> ?vista=panel
+const RUTAS = {
+  "empresa": "?vista=empresa",
+  "autogestion": "",
+  "panel": "?vista=panel",
+  "": "?vista=empresa", // la raíz "/" abre la página institucional
 };
 
 let cache = { url: "", t: 0 };
@@ -30,7 +41,12 @@ module.exports = async (req, res) => {
     .toLowerCase()
     .replace(/:\d+$/, "");
 
-  if (!(host in DESTINOS)) return res.status(404).send("Dominio no configurado");
+  const ruta = String(req.query.ruta || "").toLowerCase().replace(/^\/+|\/+$/g, "");
+
+  let sufijo;
+  if (host in DESTINOS) sufijo = DESTINOS[host];       // dominio propio manda
+  else if (ruta in RUTAS) sufijo = RUTAS[ruta];        // si no, decide la ruta
+  else return res.status(404).send("No encontrado");
 
   let BASE;
   try {
@@ -39,6 +55,5 @@ module.exports = async (req, res) => {
     return res.status(500).send("No se pudo leer el enlace de la hoja");
   }
 
-  const sufijo = DESTINOS[host]; // "", "?vista=empresa" o "?vista=panel"
   return res.redirect(302, `${BASE}${sufijo}`);
 };
