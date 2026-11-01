@@ -7,17 +7,19 @@ const DESTINOS = {
   "codecurve.vercel.app": "?vista=empresa",
   "autogestion.vercel.app": "",
   "licenciacodecurve.vercel.app": "?vista=panel",
-  ""
 };
 
 // Por RUTA (sirve con codecurve-omega.vercel.app o cualquier otro dominio)
-//   codeycruve.vercel.app/empresa     -> ?vista=empresa
-//   codeycurve.vercel.app/autogestion -> enlace crudo
-//   codeycurve.vercel.app/panel       -> ?vista=panel
+//   /empresa        -> ?vista=empresa
+//   /autogestion    -> enlace crudo
+//   /panel          -> ?vista=panel
+//   /convocatorias  -> ?vista=convocatorias (también acepta /convocatoria)
 const RUTAS = {
   "empresa": "?vista=empresa",
   "autogestion": "",
   "panel": "?vista=panel",
+  "convocatorias": "?vista=convocatorias",
+  "convocatoria": "?vista=convocatorias",
   "": "?vista=empresa", // la raíz "/" abre la página institucional
 };
 
