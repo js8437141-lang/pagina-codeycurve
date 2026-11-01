@@ -7,12 +7,13 @@ const DESTINOS = {
   "codecurve.vercel.app": "?vista=empresa",
   "autogestion.vercel.app": "",
   "licenciacodecurve.vercel.app": "?vista=panel",
+  ""
 };
 
 // Por RUTA (sirve con codecurve-omega.vercel.app o cualquier otro dominio)
-//   codecurve-omega.vercel.app/empresa     -> ?vista=empresa
-//   codecurve-omega.vercel.app/autogestion -> enlace crudo
-//   codecurve-omega.vercel.app/panel       -> ?vista=panel
+//   codeycruve.vercel.app/empresa     -> ?vista=empresa
+//   codeycurve.vercel.app/autogestion -> enlace crudo
+//   codeycurve.vercel.app/panel       -> ?vista=panel
 const RUTAS = {
   "empresa": "?vista=empresa",
   "autogestion": "",
